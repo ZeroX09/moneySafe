@@ -2,7 +2,7 @@ const express = require("express");
 const app = express()
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser")
-mongoose.connect("mongodb://0.0.0.0:27017/safeMoney").then(()=>{
+mongoose.connect(process.env.MONGO_URL).then(()=>{
     console.log("successful")
 }).catch(e=>{
     console.log(e)
@@ -99,4 +99,4 @@ app.put("/config",async (req,res)=>{
         res.status(404).json({error})
     }
 })
-app.listen(3000);
+app.listen(process.env.PORT);
